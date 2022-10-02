@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { BeerListComponent } from './components/beer/beer-list/beer-list.component';
-import { BeerDetailComponent } from './components/beer/beer-detail/beer-detail.component';
 import { BeerFormComponent } from './components/beer/beer-form/beer-form.component';
 import { NavigateComponent } from './components/navigate/navigate.component';
 
@@ -31,7 +30,6 @@ import {MatTableModule} from "@angular/material/table";
   declarations: [
     AppComponent,
     BeerListComponent,
-    BeerDetailComponent,
     BeerFormComponent,
     NavigateComponent
   ],

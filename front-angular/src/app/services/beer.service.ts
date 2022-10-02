@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Beer } from '../models/beer.model';
 
 const baseUrl = 'http://localhost:8080/api/beers'
@@ -10,7 +11,8 @@ const baseUrl = 'http://localhost:8080/api/beers'
 })
 export class BeerService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   /**
   * Get list all beer filled out
@@ -41,7 +43,7 @@ export class BeerService {
   * @param beer: object of beer
   * @param id: id of beer
   */
-  update(id: any, data: any): Observable<any> {
+  updateBeer(id: any, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 
@@ -49,17 +51,17 @@ export class BeerService {
   * Delete a beer
   @param beer: object of beer
   */
-  delete(id: any): Observable<any> {
+  deleteBeer(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
 
   /**
-   * Navigate to book update
-   * @param id: id of the screen to edit
+   * Navigate to beer list
    */
-  // navigateToBookDetail(id: string){
-  //   this.router.navigate(['/book-detail' , id]);
-  // }
+  navigateToBeerList(): void {
+    this.router.navigate(['/beer-list']);
+  }
+
 
 }
 

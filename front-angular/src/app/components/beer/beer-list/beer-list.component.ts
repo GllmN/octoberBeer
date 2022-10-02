@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs";
-import { Beer } from 'src/app/models/beer.model';
 import { Router } from "@angular/router";
-import { Type } from 'src/app/models/type.model';
 import { BeerService } from 'src/app/services/beer.service';
+import { Beer } from 'src/app/models/beer.model';
+import { Type } from 'src/app/models/type.model';
 
 @Component({
   selector: 'app-beer-list',
@@ -45,7 +45,7 @@ export class BeerListComponent implements OnInit, OnDestroy {
    */
   onDeleteBeer(beer: Beer) {
     if(confirm("Voulez vous supprimer la biere suivante : ' " + beer.marque + "', (ID : " + beer.id + ")")) {
-      this.beerService.delete(beer);
+      this.beerService.deleteBeer(beer);
     }
   }
 
