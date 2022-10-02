@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require('../models');
 const Beer = db.beers;
 
 // Create and Save a new Beer
@@ -6,7 +6,7 @@ exports.create = (req, res) => {
     // !!!!!!!!!! =====>>>> RGP : deux bieres identique ne peuvent être sauvegarder dans la bdd
     // Validate request
     if (!req.body.id) {
-    res.status(400).send({ message: "Content can not be empty!" });
+    res.status(400).send({ message: 'Content can not be empty!' });
     return;
   }
 
@@ -28,7 +28,7 @@ exports.create = (req, res) => {
       res.status(500)
         .send({
             message:
-                err.message || "Some error occurred while creating the Beer."
+                err.message || 'Some error occurred while creating the Beer.'
         });
     });
 };
@@ -36,7 +36,7 @@ exports.create = (req, res) => {
 // Find all Beers from the database.
 exports.findAll = (req, res) => {
     const id = req.query.id;
-    var condition = id ? { id: { $regex: new RegExp(id), $options: "i" } } : {};
+    var condition = id ? { id: { $regex: new RegExp(id), $options: 'i' } } : {};
   
     Beer.find(condition)
         .then(data => {
@@ -46,7 +46,7 @@ exports.findAll = (req, res) => {
             res.status(500)
                 .send({
                     message:
-                        err.message || "Some error occurred while retrieving beers."
+                        err.message || 'Some error occurred while retrieving beers.'
             });
         });
 };
@@ -59,12 +59,12 @@ exports.findById = (req, res) => {
         .then(data => {
             if (!data)
                 res.status(404)
-                    .send({ message: "Not found Beer with id " + id });
+                    .send({ message: 'Not found Beer with id ' + id });
             else res.send(data);
         })
         .catch(err => {
             res.status(500)
-                .send({ message: "Error retrieving Beer with id=" + id });
+                .send({ message: 'Error retrieving Beer with id=' + id });
         });
 };
 
@@ -72,7 +72,7 @@ exports.findById = (req, res) => {
 exports.update = (req, res) => {
     if (!req.body) {
         return res.status(400)
-            .send({message: "Data to update can not be empty!" });
+            .send({message: 'Data to update can not be empty!' });
     }
     
     const id = req.params.id;
@@ -82,11 +82,11 @@ exports.update = (req, res) => {
             if (!data) {
                 res.status(404)
                     .send({ message: `Cannot update Beer with id=${id}. Maybe Beer was not found!` });
-            } else res.send({ message: "Beer was updated successfully." });
+            } else res.send({ message: 'Beer was updated successfully.' });
         })
         .catch(err => {
             res.status(500)
-            .send({ message: "Error updating Beer with id=" + id });
+            .send({ message: 'Error updating Beer with id=' + id });
         });
 };
 
@@ -100,11 +100,11 @@ exports.delete = (req, res) => {
                 res.status(404)
                 .send({ message: `Cannot delete Beer with id=${id}. Maybe Beer was not found!` });
             } else {
-                res.send({ message: "Beer was deleted successfully!" });
+                res.send({ message: 'Beer was deleted successfully!' });
             }
         })
         .catch(err => {
             res.status(500)
-                .send({ message: "Could not delete Beer with id=" + id });
+                .send({ message: 'Could not delete Beer with id=' + id });
         });
 };

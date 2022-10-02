@@ -1,23 +1,16 @@
 module.exports = mongoose => {
-    var schema = mongoose.Schema(
-      "beer",
-      mongoose.Schema(
-        {
-          //id: String,
-          prix: String,
+    var schema = mongoose.Schema({
+          prix: Number,
           marque : String,
           type : String
-        },
-        { timestamps: true }
-      )
-    );
+        });
 
-    schema.method("toJSON", function() {
+    schema.method('toJSON', function() {
       const { __v, _id, ...object } = this.toObject();
       object.id = _id;
       return object;
     });
   
-    const Beer = mongoose.model("beer", schema)
+    const Beer = mongoose.model('beer', schema)
     return Beer;
   };
